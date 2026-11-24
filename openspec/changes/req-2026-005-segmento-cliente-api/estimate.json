@@ -1,0 +1,4 @@
+{
+  "traditionalHours": 10,
+  "basis": "Serie A: ~2h regla de negocio (Segmentador + DTO), ~4h pruebas red-green (unitarias + integración con fábrica InMemory nueva en el equipo), ~2h contrato clientes-api v1 (OpenAPI + ejemplos + validación), ~2h revisión, README y ajustes de casing/edge cases."
+}
