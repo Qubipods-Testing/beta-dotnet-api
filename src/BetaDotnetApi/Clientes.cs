@@ -16,12 +16,23 @@ public class ClientesDb : DbContext
 }
 
 /// <summary>Respuesta de GET /api/clientes/{id}. System.Text.Json la serializa con los nombres por defecto de ASP.NET Core.</summary>
-public record ClienteDto(int Id, string NombreCompleto, DateTime FechaAlta)
+public record ClienteDto(int Id, string NombreCompleto, DateTime FechaAlta, string Segmento)
 {
-    public static ClienteDto Desde(Cliente c) => new(c.Id, c.NombreCompleto, c.FechaAlta);
+    public static ClienteDto Desde(Cliente c, DateTime ahoraUtc) =>
+        new(c.Id, c.NombreCompleto, c.FechaAlta, Segmentador.Calcular(c.FechaAlta, ahoraUtc));
 }
 
 public record ErrorDto(string Codigo, string Mensaje);
+
+/// <summary>BR-01: calcula el segmento del cliente. Vive en el proveedor (ADR-01).</summary>
+public static class Segmentador
+{
+    public const string Frecuente = "Frecuente";
+    public const string Nuevo = "Nuevo";
+
+    public static string Calcular(DateTime fechaAlta, DateTime ahoraUtc) =>
+        fechaAlta <= ahoraUtc.AddMonths(-6) ? Frecuente : Nuevo;
+}
 
 public static class Semilla
 {
