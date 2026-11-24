@@ -1,0 +1,132 @@
+{
+  "info": {
+    "title": "API de clientes",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/clientes/{id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteDto"
+                },
+                "examples": {
+                  "cliente-nuevo": {
+                    "value": {
+                      "id": 102,
+                      "segmento": "Nuevo",
+                      "fechaAlta": "2026-10-20T00:00:00Z",
+                      "nombreCompleto": "Luis Gómez"
+                    }
+                  },
+                  "cliente-frecuente": {
+                    "value": {
+                      "id": 101,
+                      "segmento": "Frecuente",
+                      "fechaAlta": "2025-10-01T00:00:00Z",
+                      "nombreCompleto": "Ana Pérez"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Cliente encontrado"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                },
+                "examples": {
+                  "cliente-inexistente": {
+                    "value": {
+                      "codigo": "CLIENTE_NO_ENCONTRADO",
+                      "mensaje": "No existe el cliente 999."
+                    }
+                  }
+                }
+              }
+            },
+            "description": "No existe un cliente con ese id"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "examples": {
+              "cliente-nuevo": {
+                "value": 102
+              },
+              "cliente-frecuente": {
+                "value": 101
+              },
+              "cliente-inexistente": {
+                "value": 999
+              }
+            },
+            "required": true
+          }
+        ],
+        "operationId": "obtenerCliente"
+      }
+    }
+  },
+  "openapi": "3.1.0",
+  "components": {
+    "schemas": {
+      "ErrorDto": {
+        "type": "object",
+        "required": [
+          "codigo",
+          "mensaje"
+        ],
+        "properties": {
+          "codigo": {
+            "type": "string"
+          },
+          "mensaje": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClienteDto": {
+        "type": "object",
+        "required": [
+          "id",
+          "nombreCompleto",
+          "fechaAlta",
+          "segmento"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "segmento": {
+            "enum": [
+              "Frecuente",
+              "Nuevo"
+            ],
+            "type": "string"
+          },
+          "fechaAlta": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "nombreCompleto": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
