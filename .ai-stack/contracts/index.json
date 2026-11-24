@@ -1,0 +1,11 @@
+{
+  "contracts": [
+    {
+      "slug": "clientes-api",
+      "version": "1.0.0",
+      "hash": "9401d8f342e3d759f9353d9c8877012a5c1e4c9a2fb7e00f3cb3276a5cdb4348",
+      "role": "provider",
+      "manifest": "clientes-api/contract.json"
+    }
+  ]
+}
