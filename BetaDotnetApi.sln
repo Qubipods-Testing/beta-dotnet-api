@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6EEDD075-2832-4107-A98E-55100D1BC5F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaDotnetApi", "src\BetaDotnetApi\BetaDotnetApi.csproj", "{FE84ED72-0990-4701-9CBD-EF82D496178E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B8F837E0-6707-4612-BB79-9E613DE4BFE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaDotnetApi.Tests", "tests\BetaDotnetApi.Tests\BetaDotnetApi.Tests.csproj", "{017EBD1A-019B-4372-B5AA-D9E815BA0B2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE84ED72-0990-4701-9CBD-EF82D496178E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE84ED72-0990-4701-9CBD-EF82D496178E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE84ED72-0990-4701-9CBD-EF82D496178E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE84ED72-0990-4701-9CBD-EF82D496178E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{017EBD1A-019B-4372-B5AA-D9E815BA0B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{017EBD1A-019B-4372-B5AA-D9E815BA0B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{017EBD1A-019B-4372-B5AA-D9E815BA0B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{017EBD1A-019B-4372-B5AA-D9E815BA0B2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FE84ED72-0990-4701-9CBD-EF82D496178E} = {6EEDD075-2832-4107-A98E-55100D1BC5F6}
+		{017EBD1A-019B-4372-B5AA-D9E815BA0B2D} = {B8F837E0-6707-4612-BB79-9E613DE4BFE6}
+	EndGlobalSection
+EndGlobal
