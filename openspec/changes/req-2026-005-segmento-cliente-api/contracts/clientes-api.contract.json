@@ -1,0 +1,109 @@
+{
+  "format": "qubipods.contract/1",
+  "slug": "clientes-api",
+  "title": "API de clientes",
+  "summary": "GET /api/clientes/{id}: datos básicos del cliente más su segmento (Frecuente o Nuevo), calculado por beta-dotnet-api según BR-01, para que los consumidores no tengan que recalcularlo.",
+  "provider": { "system": "beta-dotnet-api" },
+  "parts": [
+    {
+      "id": "api",
+      "type": "http-api",
+      "casing": "camelCase",
+      "openapi": {
+        "openapi": "3.1.0",
+        "info": { "title": "API de clientes", "version": "1.0.0" },
+        "paths": {
+          "/api/clientes/{id}": {
+            "get": {
+              "operationId": "obtenerCliente",
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "schema": { "type": "integer" },
+                  "examples": {
+                    "cliente-frecuente": { "value": 101 },
+                    "cliente-nuevo": { "value": 102 },
+                    "cliente-inexistente": { "value": 999 }
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Cliente encontrado",
+                  "content": {
+                    "application/json": {
+                      "schema": { "$ref": "#/components/schemas/ClienteDto" },
+                      "examples": {
+                        "cliente-frecuente": {
+                          "value": {
+                            "id": 101,
+                            "nombreCompleto": "Ana Pérez",
+                            "fechaAlta": "2025-10-01T00:00:00Z",
+                            "segmento": "Frecuente"
+                          }
+                        },
+                        "cliente-nuevo": {
+                          "value": {
+                            "id": 102,
+                            "nombreCompleto": "Luis Gómez",
+                            "fechaAlta": "2026-10-20T00:00:00Z",
+                            "segmento": "Nuevo"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "404": {
+                  "description": "No existe un cliente con ese id",
+                  "content": {
+                    "application/json": {
+                      "schema": { "$ref": "#/components/schemas/ErrorDto" },
+                      "examples": {
+                        "cliente-inexistente": {
+                          "value": {
+                            "codigo": "CLIENTE_NO_ENCONTRADO",
+                            "mensaje": "No existe el cliente 999."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "components": {
+          "schemas": {
+            "ClienteDto": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "integer" },
+                "nombreCompleto": { "type": "string" },
+                "fechaAlta": { "type": "string", "format": "date-time" },
+                "segmento": {
+                  "type": "string",
+                  "enum": ["Frecuente", "Nuevo"]
+                }
+              },
+              "required": ["id", "nombreCompleto", "fechaAlta", "segmento"],
+              "additionalProperties": false
+            },
+            "ErrorDto": {
+              "type": "object",
+              "properties": {
+                "codigo": { "type": "string" },
+                "mensaje": { "type": "string" }
+              },
+              "required": ["codigo", "mensaje"],
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    }
+  ]
+}
