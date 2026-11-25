@@ -1,0 +1,4 @@
+{
+  "traditionalHours": 6,
+  "basis": "Serie A: ~1h función de formateo y endpoint, ~2h pruebas red-green (unitarias + integración con fábrica InMemory), ~1h caso borde de nombre ausente y ErrorDto, ~1h validación openspec y README, ~1h revisión."
+}
